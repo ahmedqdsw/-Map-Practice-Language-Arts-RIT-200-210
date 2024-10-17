@@ -28,7 +28,28 @@ function submitExam() {
     if (form2.q13.value === "A") score++;
     if (form2.q14.value === "B") score++;
     if (form2.q15.value === "B") score++;
-    if (form2.q16.value === "A") score++;
+    if (form2.q16.value === "C") score++;
+    if (form2.q17.value === "B") score++;
+    if (form2.q18.value === "A") score++;
+    if (form2.q19.value === "C") score++;
+    if (form2.q20.value === "A") score++;
+    if (form2.q21.value === "C") score++; 
+    if (form2.q22.value === "A") score++;
+    if (form2.q23.value === "B") score++;
+    if (form2.q24.value === "C") score++;
+    if (form2.q25.value === "C") score++;
+    if (form2.q26.value === "A") score++;
+    if (form2.q27.value === "B") score++;
+    if (form2.q28.value === "C") score++;
+    if (form2.q29.value === "B") score++;
+    if (form2.q30.value === "A") score++;
+    if (form2.q31.value === "C") score++;
+    if (form2.q32.value === "A") score++;
+    if (form2.q33.value === "B") score++;
+    if (form2.q34.value === "A") score++;
+    if (form2.q35.value === "C") score++;
+    if (form2.q36.value === "B") score++;
+
 
     // Show results on the results page
     localStorage.setItem("score", score);
