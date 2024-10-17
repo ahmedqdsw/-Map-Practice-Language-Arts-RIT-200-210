@@ -1,142 +1,42 @@
-// Define the correct answers for all 36 questions
-const correctAnswers = {
-    q1: 'B',
-    q2: 'C',
-    q3: 'A',
-    q4: 'B',
-    q5: 'A',
-    q6: 'B',
-    q7: 'B',
-    q8: 'C',
-    q9: 'A',
-    q10: 'C',
-    q11: 'B',
-    q12: 'C',
-    q13: 'A',
-    q14: 'A',
-    q15: 'B',
-    q16: 'A',
-    q17: 'B',
-    q18: 'A',
-    q19: 'C',
-    q20: 'A',
-    q21: 'C',
-    q22: 'A',
-    q23: 'A',
-    q24: 'B',
-    q25: 'C',
-    q26: 'A',
-    q27: 'B',
-    q28: 'A',
-    q29: 'B',
-    q30: 'A',
-    q31: 'C',
-    q32: 'A',
-    q33: 'B',
-    q34: 'A',
-    q35: 'C',
-    q36: 'B'
-};
-
-let score = 0;
-
-function nextPage() {
-    const page1 = document.getElementById("page1");
-    const page2 = document.getElementById("page2");
-
-    const form1 = document.getElementById("examForm1");
-    if (validateForm(form1, 1, 20)) {
-        page1.style.display = "none";
-        page2.style.display = "block";
-    }
-}
-
 function submitExam() {
-    const form2 = document.getElementById("examForm2");
-    if (validateForm(form2, 21, 36)) {
-        calculateScore();
-        displayResults();
-    }
-}
+    let score = 0;
 
-function validateForm(form, start, end) {
-    for (let i = start; i <= end; i++) {
-        const question = form[`q${i}`];
-        if (!question || !question.value) {
-            alert(`Please answer question ${i}.`);
-            return false;
-        }
-    }
-    return true;
-}
+    // Retrieve the form data and check answers (this is just an example, adjust based on your questions and correct answers)
+    const correctAnswers = ['B', 'C', 'A', 'B', 'A', 'B', 'B', 'C', 'B', 'A', 'C', 'B', 'A', 'A', 'B', 'C', 'B', 'A', 'C', 'A', 'C', 'A', 'B', 'C', 'C', 'A', 'B', 'A', 'B', 'C', 'A', 'B', 'C', 'B', 'C', 'B'];
+    const form1Answers = Array.from(document.querySelectorAll("#examForm1 input[type='radio']:checked")).map(input => input.value);
+    const form2Answers = Array.from(document.querySelectorAll("#examForm2 input[type='radio']:checked")).map(input => input.value);
 
-function calculateScore() {
-    score = 0;
-    for (let i = 1; i <= 36; i++) {
-        const form = (i <= 20) ? document.getElementById("examForm1") : document.getElementById("examForm2");
-        const userAnswer = form[`q${i}`].value;
-        if (userAnswer === correctAnswers[`q${i}`]) {
+    const allAnswers = form1Answers.concat(form2Answers);
+
+    allAnswers.forEach((answer, index) => {
+        if (answer === correctAnswers[index]) {
             score++;
         }
-    }
-}
+    });
 
-function displayResults() {
-    const resultPage = document.getElementById("resultPage");
-    const scoreText = document.getElementById("score");
-    const feedbackText = document.getElementById("feedback");
-    const videoList = document.getElementById("videoList");
-
-    // Hide exam pages
+    // Display the result page
+    document.getElementById("page1").style.display = "none";
     document.getElementById("page2").style.display = "none";
+    document.getElementById("resultPage").style.display = "block";
 
-    // Display score and feedback
-    scoreText.innerText = `You scored: ${score}/36`;
+    // Display score
+    document.getElementById("score").textContent = `Your Score: ${score} / 36`;
+
+    // Provide feedback based on the score
+    const feedback = score >= 30 ? "Great job! You've mastered the material." : "Keep practicing!";
+    document.getElementById("feedback").textContent = feedback;
+
+    // Show trophy if the score is 30 or higher
     if (score >= 30) {
-        feedbackText.innerText = "Excellent work!";
-        showTrophyModal(); // Call the function to show the trophy
-    } else if (score >= 20) {
-        feedbackText.innerText = "Good job! A little more practice will make you perfect.";
-    } else if (score >= 11) {
-        feedbackText.innerText = "Fair effort! Consider reviewing some topics.";
+        document.getElementById("trophy").style.display = "block";
     } else {
-        feedbackText.innerText = "Keep practicing! Here are some resources to help you improve.";
+        document.getElementById("trophy").style.display = "none";
     }
 
-    // Show video recommendations if score is between 0 and 10
-    if (score <= 18) {
-        videoList.style.display = "block";
+    // Show video list if score is below 30
+    if (score < 30) {
+        document.getElementById("videoList").style.display = "block";
     } else {
-        videoList.style.display = "none";
+        document.getElementById("videoList").style.display = "none";
     }
-
-    // Show results page
-    resultPage.style.display = "block";
-}
-
-// Function to show the trophy modal
-function showTrophyModal() {
-    const trophyModal = document.getElementById("trophyModal");
-    trophyModal.style.display = "block"; // Display the trophy modal
-
-    // Optional: You can add a congratulatory message before showing the trophy
-    const trophyMessage = document.getElementById("trophyMessage");
-    trophyMessage.innerText = "Congrats, you got a trophy! We are proud of you for achieving this.";
-}
-
-// Function to close the trophy modal
-function closeTrophyModal() {
-    const trophyModal = document.getElementById("trophyModal");
-    trophyModal.style.display = "none";
-}
-
-function retakeExam() {
-    // Reset all forms and scores
-    document.getElementById("examForm1").reset();
-    document.getElementById("examForm2").reset();
-    score = 0;
-
-    // Hide results page and show first page
-    document.getElementById("resultPage").style.display = "none";
-    document.getElementById("page1").style.display = "block";
 }
