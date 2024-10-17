@@ -1,9 +1,41 @@
 // Define the correct answers for all 36 questions
 const correctAnswers = {
-    q1: 'B', q2: 'C', q3: 'A', q4: 'B', q5: 'A', q6: 'B', q7: 'B', q8: 'C', q9: 'A', q10: 'C',
-    q11: 'B', q12: 'C', q13: 'A', q14: 'A', q15: 'B', q16: 'A', q17: 'B', q18: 'A', q19: 'C',
-    q20: 'A', q21: 'C', q22: 'A', q23: 'A', q24: 'B', q25: 'C', q26: 'A', q27: 'B', q28: 'A',
-    q29: 'B', q30: 'A', q31: 'C', q32: 'A', q33: 'B', q34: 'A', q35: 'C', q36: 'B'
+    q1: 'B',
+    q2: 'C',
+    q3: 'A',
+    q4: 'B',
+    q5: 'A',
+    q6: 'B',
+    q7: 'B',
+    q8: 'C',
+    q9: 'A',
+    q10: 'C',
+    q11: 'B',
+    q12: 'C',
+    q13: 'A',
+    q14: 'A',
+    q15: 'B',
+    q16: 'A',
+    q17: 'B',
+    q18: 'A',
+    q19: 'C',
+    q20: 'A',
+    q21: 'C',
+    q22: 'A',
+    q23: 'A',
+    q24: 'B',
+    q25: 'C',
+    q26: 'A',
+    q27: 'B',
+    q28: 'A',
+    q29: 'B',
+    q30: 'A',
+    q31: 'C',
+    q32: 'A',
+    q33: 'B',
+    q34: 'A',
+    q35: 'C',
+    q36: 'B'
 };
 
 let score = 0;
@@ -60,10 +92,9 @@ function displayResults() {
 
     // Display score and feedback
     scoreText.innerText = `You scored: ${score}/36`;
-
     if (score >= 30) {
         feedbackText.innerText = "Excellent work!";
-        showTrophy(); // Call the function to show the trophy if score >= 30
+        showTrophyModal(); // Call the function to show the trophy
     } else if (score >= 20) {
         feedbackText.innerText = "Good job! A little more practice will make you perfect.";
     } else if (score >= 11) {
@@ -72,7 +103,7 @@ function displayResults() {
         feedbackText.innerText = "Keep practicing! Here are some resources to help you improve.";
     }
 
-    // Show video recommendations if score is between 0 and 18
+    // Show video recommendations if score is between 0 and 10
     if (score <= 18) {
         videoList.style.display = "block";
     } else {
@@ -84,27 +115,19 @@ function displayResults() {
 }
 
 // Function to show the trophy modal
-function showTrophy() {
-    const trophyModal = document.createElement('div');
-    trophyModal.id = 'trophyModal';
-    trophyModal.classList.add('modal'); // Add modal class for styling
-    trophyModal.innerHTML = `
-        <div class="modal-content">
-            <h2>Congrats, you got a trophy!</h2>
-            <p>We are proud of you for achieving this.</p>
-            <img src="path-to-trophy-image.png" alt="Trophy" class="trophy-image" />
-            <button onclick="closeTrophyModal()">Close</button>
-        </div>
-    `;
-    document.body.appendChild(trophyModal); // Append the modal to the body
+function showTrophyModal() {
+    const trophyModal = document.getElementById("trophyModal");
+    trophyModal.style.display = "block"; // Display the trophy modal
+
+    // Optional: You can add a congratulatory message before showing the trophy
+    const trophyMessage = document.getElementById("trophyMessage");
+    trophyMessage.innerText = "Congrats, you got a trophy! We are proud of you for achieving this.";
 }
 
 // Function to close the trophy modal
 function closeTrophyModal() {
-    const trophyModal = document.getElementById('trophyModal');
-    if (trophyModal) {
-        trophyModal.remove(); // Remove the modal from the DOM
-    }
+    const trophyModal = document.getElementById("trophyModal");
+    trophyModal.style.display = "none";
 }
 
 function retakeExam() {
