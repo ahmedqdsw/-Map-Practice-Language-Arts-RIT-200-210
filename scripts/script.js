@@ -1,42 +1,120 @@
-function submitExam() {
+// script.js
+
+// Array of correct answers for the exam
+const correctAnswers = {
+    q1: 'B',
+    q2: 'C',
+    q3: 'A',
+    q4: 'B',
+    q5: 'A',
+    q6: 'B',
+    q7: 'B',
+    q8: 'C',
+    q9: 'B',
+    q10: 'A',
+    q11: 'C',
+    q12: 'B',
+    q13: 'A',
+    q14: 'A',
+    q15: 'B',
+    q16: 'C',
+    q17: 'B',
+    q18: 'A',
+    q19: 'C',
+    q20: 'A',
+    q21: 'C',
+    q22: 'A',
+    q23: 'B',
+    q24: 'C',
+    q25: 'C',
+    q26: 'A',
+    q27: 'B',
+    q28: 'A',
+    q29: 'B',
+    q30: 'A',
+    q31: 'C',
+    q32: 'A',
+    q33: 'B',
+    q34: 'A',
+    q35: 'C',
+    q36: 'B'
+};
+
+// Function to calculate the score based on answers
+function calculateScore(formId) {
+    const form = document.getElementById(formId);
     let score = 0;
 
-    // Retrieve the form data and check answers (this is just an example, adjust based on your questions and correct answers)
-    const correctAnswers = ['B', 'C', 'A', 'B', 'A', 'B', 'B', 'C', 'B', 'A', 'C', 'B', 'A', 'A', 'B', 'C', 'B', 'A', 'C', 'A', 'C', 'A', 'B', 'C', 'C', 'A', 'B', 'A', 'B', 'C', 'A', 'B', 'C', 'B', 'C', 'B'];
-    const form1Answers = Array.from(document.querySelectorAll("#examForm1 input[type='radio']:checked")).map(input => input.value);
-    const form2Answers = Array.from(document.querySelectorAll("#examForm2 input[type='radio']:checked")).map(input => input.value);
-
-    const allAnswers = form1Answers.concat(form2Answers);
-
-    allAnswers.forEach((answer, index) => {
-        if (answer === correctAnswers[index]) {
+    // Iterate over the correct answers and check the selected options
+    for (const [question, correctAnswer] of Object.entries(correctAnswers)) {
+        const selectedAnswer = form.elements[question]?.value;
+        if (selectedAnswer === correctAnswer) {
             score++;
         }
-    });
+    }
 
-    // Display the result page
-    document.getElementById("page1").style.display = "none";
-    document.getElementById("page2").style.display = "none";
-    document.getElementById("resultPage").style.display = "block";
+    return score;
+}
 
-    // Display score
-    document.getElementById("score").textContent = `Your Score: ${score} / 36`;
+// Function to display the result and feedback
+function showResults(score) {
+    const resultPage = document.getElementById("resultPage");
+    const scoreText = document.getElementById("score");
+    const feedbackText = document.getElementById("feedback");
+    const videoList = document.getElementById("videoList");
 
-    // Provide feedback based on the score
-    const feedback = score >= 30 ? "Great job! You've mastered the material." : "Keep practicing!";
-    document.getElementById("feedback").textContent = feedback;
+    resultPage.style.display = "block"; // Show result page
+    scoreText.textContent = `Your score is: ${score}/36`;
 
-    // Show trophy if the score is 30 or higher
+    // Display feedback based on score
     if (score >= 30) {
-        document.getElementById("trophy").style.display = "block";
+        feedbackText.innerHTML = 'Congratulations! You earned a <strong>Trophy!</strong>';
+        feedbackText.innerHTML += '<br><img src="https://example.com/trophy.png" alt="Trophy" style="width:100px;">';
+    } else if (score >= 20) {
+        feedbackText.textContent = "Good job! Keep practicing!";
     } else {
-        document.getElementById("trophy").style.display = "none";
+        feedbackText.textContent = "Keep learning! You can improve!";
     }
 
-    // Show video list if score is below 30
+    // Show recommended videos if the score is less than 30
     if (score < 30) {
-        document.getElementById("videoList").style.display = "block";
+        videoList.style.display = "block";
     } else {
-        document.getElementById("videoList").style.display = "none";
+        videoList.style.display = "none";
     }
+}
+
+// Function to handle page navigation (Page 1 to Page 2)
+function nextPage() {
+    const page1 = document.getElementById("page1");
+    const page2 = document.getElementById("page2");
+
+    const form1 = document.getElementById("examForm1");
+
+    // Check if all fields on page 1 are filled
+    if (form1.checkValidity()) {
+        page1.style.display = "none";
+        page2.style.display = "block";
+    } else {
+        alert("Please fill out all required fields on this page.");
+    }
+}
+
+// Function to submit the exam and show the result
+function submitExam() {
+    const page2 = document.getElementById("page2");
+    const form1 = document.getElementById("examForm1");
+    const form2 = document.getElementById("examForm2");
+
+    // Calculate total score from both pages
+    const score = calculateScore('examForm1') + calculateScore('examForm2');
+
+    // Hide exam pages and show the result
+    page2.style.display = "none";
+    showResults(score);
+}
+
+// Function to retake the exam (reload the page)
+function retakeExam() {
+    location.reload();
 }
