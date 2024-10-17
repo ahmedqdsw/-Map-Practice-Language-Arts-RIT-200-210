@@ -59,7 +59,7 @@ function submitExam() {
 window.onload = function() {
     const score = localStorage.getItem("score");
     if (score !== null) {
-        document.getElementById("score").innerText = "Your Score: " + score + "/16";
+        document.getElementById("score").innerText = "Your Score: " + score + "/36";
 
         if (score <= 10) {
             const videos = [
