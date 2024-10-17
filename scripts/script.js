@@ -19,8 +19,6 @@ function submitExam() {
     if (form1.q6.value === "B") score++;
     if (form1.q7.value === "B") score++;
     if (form1.q8.value === "C") score++;
-
-    // Scoring logic for form 2
     if (form2.q9.value === "A") score++;
     if (form2.q10.value === "C") score++;
     if (form2.q11.value === "B") score++;
@@ -33,6 +31,8 @@ function submitExam() {
     if (form2.q18.value === "A") score++;
     if (form2.q19.value === "C") score++;
     if (form2.q20.value === "A") score++;
+
+    // Scoring logic for form 2
     if (form2.q21.value === "C") score++; 
     if (form2.q22.value === "A") score++;
     if (form2.q23.value === "B") score++;
