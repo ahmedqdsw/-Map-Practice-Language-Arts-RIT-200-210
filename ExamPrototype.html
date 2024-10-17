@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Exam Portal</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: black;
+            color: white;
+            margin: 0;
+            padding: 20px;
+        }
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: #333;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(255, 255, 255, 0.1);
+        }
+        .question {
+            margin: 15px 0;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        input[type="text"] {
+            background-color: #555;
+            color: white;
+            border: 1px solid #777;
+            padding: 5px;
+            width: 100%;
+            border-radius: 5px;
+        }
+        input[type="radio"] {
+            margin-right: 10px;
+        }
+        .results {
+            display: none;
+        }
+        .video-list {
+            margin-top: 20px;
+        }
+        .video-list ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .video-list li {
+            margin-bottom: 10px;
+        }
+        .video-list iframe {
+            width: 100%;
+            height: 300px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Online Exam Portal</h1>
+</header>
+
+<div class="container" id="page1">
+    <h2>Exam: Language Arts - Page 1</h2>
+    <form id="examForm1">
+        <label for="name">Name:</label><br>
+        <input type="text" id="name" required><br><br>
+        
+        <label for="grade">Grade:</label><br>
+        <input type="text" id="grade" required><br><br>
+
+        <div class="question">
+            <label>1. Choose the word that is a preposition.</label><br>
+            <input type="radio" name="q1" value="A"> A) small<br>
+            <input type="radio" name="q1" value="B"> B) above<br>
+            <input type="radio" name="q1" value="C"> C) town<br>
+        </div>
+
+        <div class="question">
+            <label>2. Choose the word that is a preposition.</label><br>
+            <input type="radio" name="q2" value="A"> A) believed<br>
+            <input type="radio" name="q2" value="B"> B) nasty<br>
+            <input type="radio" name="q2" value="C"> C) beneath<br>
+        </div>
+
+        <div class="question">
+            <label>3. Choose the word that is a preposition.</label><br>
+            <input type="radio" name="q3" value="A"> A) from<br>
+            <input type="radio" name="q3" value="B"> B) his<br>
+            <input type="radio" name="q3" value="C"> C) other<br>
+        </div>
+
+        <div class="question">
+            <label>4. Choose the word that is a preposition.</label><br>
+            <input type="radio" name="q4" value="A"> A) fled<br>
+            <input type="radio" name="q4" value="B"> B) at<br>
+            <input type="radio" name="q4" value="C"> C) the<br>
+        </div>
+
+        <div class="question">
+            <label>5. Choose the word that is an interjection.</label><br>
+            <input type="radio" name="q5" value="A"> A) Ugh<br>
+            <input type="radio" name="q5" value="B"> B) already<br>
+            <input type="radio" name="q5" value="C"> C) Did<br>
+        </div>
+
+        <div class="question">
+            <label>6. Choose the word that is an interjection.</label><br>
+            <input type="radio" name="q6" value="A"> A) solution<br>
+            <input type="radio" name="q6" value="B"> B) Aha<br>
+            <input type="radio" name="q6" value="C"> C) exclaimed<br>
+        </div>
+
+        <div class="question">
+            <label>7. Choose the word that is an interjection.</label><br>
+            <input type="radio" name="q7" value="A"> A) shouted<br>
+            <input type="radio" name="q7" value="B"> B) Ouch<br>
+            <input type="radio" name="q7" value="A"> C) hurt<br>
+        </div>
+
+        <div class="question">
+            <label>8. Choose the word that is an interjection.</label><br>
+            <input type="radio" name="q8" value="A"> A) sail<br>
+            <input type="radio" name="q8" value="B"> B) loaded<br>
+            <input type="radio" name="q8" value="C"> C) Ahoy<br>
+        </div>
+
+        <button type="button" onclick="nextPage()">Next</button>
+    </form>
+</div>
+
+<div class="container" id="page2" style="display:none;">
+    <h2>Exam: Language Arts - Page 2</h2>
+    <form id="examForm2">
+        <div class="question">
+            <label>9. Choose the best coordinating conjunction to finish the sentence. Crystal must choose between having cake ____ pie for her birthday dessert.</label><br>
+            <input type="radio" name="q9" value="A"> A) or<br>
+            <input type="radio" name="q9" value="B"> B) and<br>
+            <input type="radio" name="q9" value="C"> C) but<br>
+        </div>
+
+        <div class="question">
+            <label>10. Hunter told his mother that he likes art class ____ not gym.</label><br>
+            <input type="radio" name="q10" value="A"> A) or<br>
+            <input type="radio" name="q10" value="B"> B) and<br>
+            <input type="radio" name="q10" value="C"> C) but<br>
+        </div>
+
+        <div class="question">
+            <label>11. Amy wore a striped dress ____ a bright yellow baseball hat.</label><br>
+            <input type="radio" name="q11" value="A"> A) or<br>
+            <input type="radio" name="q11" value="B"> B) and<br>
+            <input type="radio" name="q11" value="C"> C) but<br>
+        </div>
+
+        <div class="question">
+            <label>12. Choose the best coordinating conjunction to finish the sentence.</label><br>
+            <input type="radio" name="q12" value="A"> A) or<br>
+            <input type="radio" name="q12" value="B"> B) and<br>
+            <input type="radio" name="q12" value="C"> C) but<br>
+        </div>
+
+        <div class="question">
+            <label>13. Choose the prepositional phrase. Jamie wanted to find some information about the mummy’s curse.</label><br>
+            <input type="radio" name="q13" value="A"> A) about the mummy’s curse<br>
+            <input type="radio" name="q13" value="B"> B) soldiers were<br>
+            <input type="radio" name="q13" value="C"> C) deep below<br>
+        </div>
+
+        <div class="question">
+            <label>14. The soldiers were able to sneak behind enemy lines and ambush them.</label><br>
+            <input type="radio" name="q14" value="A"> A) behind enemy lines<br>
+            <input type="radio" name="q14" value="B"> B) soldiers were<br>
+            <input type="radio" name="q14" value="C"> C) deep below<br>
+        </div>
+
+        <div class="question">
+            <label>15. The treasure was hidden beneath the ancient oak tree.</label><br>
+            <input type="radio" name="q15" value="A"> A) hidden beneath<br>
+            <input type="radio" name="q15" value="B"> B) treasure was<br>
+            <input type="radio" name="q15" value="C"> C) ancient oak<br>
+        </div>
+
+        <button type="button" onclick="submitExam()">Submit</button>
+    </form>
+</div>
+
+<div class="container results" id="resultPage">
+    <h2>Exam Results</h2>
+    <p id="score"></p>
+    <p id="feedback"></p>
+    <div class="video-list" id="videoList" style="display: none;">
+        <h3>Recommended Videos to Help You Learn:</h3>
+        <ul>
+            <li>
+                <iframe src="https://www.youtube.com/embed/xyMrLQ4ZI-4" 
+                frameborder="0" allowfullscreen></iframe>
+                <p>What Are Prepositions? | Grammar for Kids</p>
+            </li>
+            <li>
+                <iframe src="https://www.youtube.com/embed/nVJDoD2THa4" 
+                frameborder="0" allowfullscreen></iframe>
+                <p>Interjections: Understanding Interjections in English</p>
+            </li>
+            <li>
+                <iframe src="https://www.youtube.com/embed/3qbfcHiUrcI" 
+                frameborder="0" allowfullscreen></iframe>
+                <p>Conjunctions for Kids: Coordinating, Subordinating, and Correlative</p>
+            </li>
+            <li>
+                <iframe src="https://www.youtube.com/embed/brxQFHE3b6Q" 
+                frameborder="0" allowfullscreen></iframe>
+                <p>What is a Prepositional Phrase?</p>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<script>
+    let answers1 = ["B", "C", "A", "B", "A", "B", "B", "C"];
+    let answers2 = ["A", "C", "B", "B", "A", "A", "B"];
+    let score = 0;
+
+    function nextPage() {
+        let examForm1 = document.forms["examForm1"];
+        let formValid = validateForm(examForm1);
+        
+        if (formValid) {
+            document.getElementById("page1").style.display = "none";
+            document.getElementById("page2").style.display = "block";
+        }
+    }
+
+    function validateForm(form) {
+        let valid = true;
+        for (let i = 0; i < form.length; i++) {
+            if (form[i].type === "radio") {
+                let groupName = form[i].name;
+                if (!form[groupName].value) {
+                    alert("Please answer all questions before proceeding.");
+                    valid = false;
+                    break;
+                }
+            }
+        }
+        return valid;
+    }
+
+    function submitExam() {
+        let examForm2 = document.forms["examForm2"];
+        if (validateForm(examForm2)) {
+            let name = document.getElementById("name").value;
+            let grade = document.getElementById("grade").value;
+            calculateScore();
+
+            document.getElementById("page2").style.display = "none";
+            document.getElementById("resultPage").style.display = "block";
+            document.getElementById("score").innerText = `${name}, you scored: ${score}/15`;
+            let feedback = score >= 12 ? "Great job!" : "Keep practicing!";
+            document.getElementById("feedback").innerText = feedback;
+
+            // Show video links if score is between 0 and 10
+            if (score <= 10) {
+                document.getElementById("videoList").style.display = "block";
+            }
+        }
+    }
+
+    function calculateScore() {
+        let examForm1 = document.forms["examForm1"];
+        let examForm2 = document.forms["examForm2"];
+
+        for (let i = 0; i < answers1.length; i++) {
+            if (examForm1[`q${i + 1}`].value === answers1[i]) {
+                score++;
+            }
+        }
+
+        for (let i = 0; i < answers2.length; i++) {
+            if (examForm2[`q${i + 9}`].value === answers2[i]) {
+                score++;
+            }
+        }
+    }
+</script>
+
+</body>
+</html>
