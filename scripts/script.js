@@ -103,7 +103,7 @@ function displayResults() {
     }
 
     // Show video recommendations if score is between 0 and 10
-    if (score <= 10) {
+    if (score <= 18) {
         videoList.style.display = "block";
     } else {
         videoList.style.display = "none";
