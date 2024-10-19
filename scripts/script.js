@@ -69,7 +69,7 @@ function showResults(score) {
     // Display feedback based on score
     if (score >= 30) {
         feedbackText.innerHTML = 'Congratulations! You earned a <strong>Trophy!</strong>';
-        feedbackText.innerHTML += '<br><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTR1AT5EPun5HnuA6cvGkjaEFcycnM5b0408A&s" alt="Trophy" style="width:100px;">';
+        feedbackText.innerHTML += '<br><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTR1AT5EPun5HnuA6cvGkjaEFcycnM5b0408A&s" alt="Trophy" style="width:250px;">';
     } else if (score >= 20) {
         feedbackText.textContent = "Good job! Keep practicing!";
     } else {
